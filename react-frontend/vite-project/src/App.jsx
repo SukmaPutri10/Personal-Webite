@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react'
 import photo from './assets/my_photo.png';
 
-const API_URL = 'http://localhost:5000/api/cv'
+const API_URL = '/cv.json'
 
 function App() {
   const [cv, setCv] = useState(null)
@@ -12,15 +12,19 @@ function App() {
     async function fetchCv() {
       try {
         const response = await fetch(API_URL)
-        const result = await response.json()
 
-        if (!result.success) {
-          throw new Error(result.message)
+        if (!response.ok) {
+          throw new Error("Gagal mengambil data CV")
         }
 
-        setCv(result.data)
+        const result = await response.json()
+
+        console.log(result);
+
+        setCv(result)
       } catch (err) {
-        setError('Gagal mengambil data CV. Pastikan backend berjalan di http://localhost:5000')
+        console.error(err);
+        setError(err.message);
       } finally {
         setLoading(false)
       }
