@@ -1,0 +1,139 @@
+{
+  "profile": {
+    "name": "Sukma Putri Ramadani",
+    "role": "Informatics Student | Full Stack Web Developer Enthusiast",
+    "tagline": "Tertarik pada pengembangan website, REST API, dan integrasi teknologi AI.",
+    "location": "Yogyakarta, Indonesia",
+    "email": "sukmaputri@students.amikom.ac.id",
+    "phone": "+62 858-7880-4824",
+    "website": "",
+    "photoText": "/assets/photo.png",
+    "summary": "Saya adalah mahasiswa S1 Informatika Universitas AMIKOM Yogyakarta yang memiliki minat pada pengembangan aplikasi web, backend development, serta integrasi Artificial Intelligence. Saya terbiasa membangun project menggunakan React.js, Node.js, Express.js, MySQL, dan Git, serta terus mengembangkan kemampuan melalui berbagai project akademik maupun project pribadi."
+  },
+  "socials": [
+    {
+      "label": "GitHub",
+      "url": "https://github.com/SukmaPutri10"
+    },
+    {
+      "label": "Instagram",
+      "url": "mailto:sukmaputri@students.amikom.ac.id"
+    }
+  ],
+  "stats": [
+    {
+      "label": "Projects",
+      "value": "6+"
+    },
+    {
+      "label": "Experience",
+      "value": "Academic Projects"
+    },
+    {
+      "label": "Certificates",
+      "value": "4"
+    }
+  ],
+  "skills": [
+    {
+      "name": "HTML & CSS",
+      "level": 90
+    },
+    {
+      "name": "JavaScript",
+      "level": 85
+    },
+    {
+      "name": "React.js",
+      "level": 80
+    },
+    {
+      "name": "Node.js",
+      "level": 78
+    },
+    {
+      "name": "Express.js",
+      "level": 75
+    },
+    {
+      "name": "MySQL",
+      "level": 85
+    },
+    {
+      "name": "Supabase",
+      "level": 70
+    },
+    {
+      "name": "Laravel",
+      "level": 65
+    },
+    {
+      "name": "Python",
+      "level": 70
+    },
+    {
+      "name": "Git & GitHub",
+      "level": 80
+    }
+  ],
+  "experiences": [
+    {
+      "position": "Frontend Web Developer",
+      "company": "Personal Project",
+      "period": "2025",
+      "description": "Mengembangkan website portfolio menggunakan React.js, CSS, dan Node.js dengan integrasi REST API untuk menampilkan data CV secara dinamis."
+    },
+    {
+      "position": "Full Stack Web Developer",
+      "company": "Team Project",
+      "period": "2025",
+      "description": "Mengembangkan website pemesanan logo menggunakan React.js, Node.js, dan Supabase. Bertanggung jawab pada implementasi frontend, autentikasi, dan integrasi database."
+    },
+    {
+      "position": "Machine Learning Developer",
+      "company": "Academic Project",
+      "period": "2025",
+      "description": "Membangun sistem Content Based Image Retrieval menggunakan CNN pada Google Colab sebagai project mata kuliah Artificial Intelligence."
+    }
+  ],
+  "education": [
+    {
+      "degree": "S1 Informatika",
+      "school": "UNIVERSITAS AMIKOM YOGYAKARTA",
+      "period": "2024 - Sekarang",
+      "description": "Fokus pada web programming, database, UI/UX, dan pengembangan aplikasi berbasis teknologi modern."
+    }
+  ],
+  "projects": [
+    {
+      "title": "Automatic Parking System",
+      "description": "Aplikasi sistem parkir otomatis berbasis C++ yang mengimplementasikan struktur data Queue dan Stack untuk mengelola kendaraan masuk dan keluar.",
+      "tech": ["C++", "Queue", "Stack"]
+    },
+    {
+      "title": "Database Programming Project",
+      "description": "Implementasi operasi CRUD, View, Index, dan Query SQL menggunakan MySQL sebagai bagian dari pembelajaran Pemrograman Basis Data.",
+      "tech": ["MySQL", "SQL"]
+    },
+    {
+      "title": "Personal Portfolio Website",
+      "description": "Website portfolio pribadi yang dibangun menggunakan React.js dan Node.js untuk menampilkan data CV secara dinamis melalui REST API.",
+      "tech": ["React.js", "Node.js", "Express.js", "Vite"]
+    },
+    {
+      "title": "Logo Ordering Website",
+      "description": "Website pemesanan logo yang menyediakan autentikasi pengguna, formulir pemesanan, dan penyimpanan data menggunakan Supabase.",
+      "tech": ["React.js", "Node.js", "Supabase", "Express.js"]
+    },
+    {
+      "title": "Product Management REST API",
+      "description": "REST API untuk mengelola data produk menggunakan Node.js dan Express.js dengan operasi CRUD.",
+      "tech": ["Node.js", "Express.js", "REST API", "JSON"]
+    },
+    {
+      "title": "Content Based Image Retrieval",
+      "description": "Sistem pencarian gambar berdasarkan kemiripan visual menggunakan Convolutional Neural Network (CNN).",
+      "tech": ["Python", "TensorFlow", "Google Colab", "CNN"]
+    }
+  ]
+}

@@ -1,7 +1,21 @@
 import { useEffect, useState } from 'react'
-import photo from './assets/my_photo.png';
 
-const API_URL = '/cv.json'
+const IS_PRODUCTION = import.meta.env.PROD
+
+const API_URL = IS_PRODUCTION
+  ? '/api/cv'
+  : 'http://localhost:5000/api/cv'
+
+const BACKEND_URL = IS_PRODUCTION
+  ? ''
+  : 'http://localhost:5000'
+
+function normalizePhotoUrl(photo) {
+  if (!photo) return ''
+  if (photo.startsWith('http')) return photo
+  if (photo.startsWith('/')) return `${BACKEND_URL}${photo}`
+  return `${BACKEND_URL}/${photo}`
+}
 
 function App() {
   const [cv, setCv] = useState(null)
@@ -92,7 +106,7 @@ function App() {
           <div className="profile-card">
             <div className="avatar-ring">
               <img
-              src={photo}
+                src={profile.photoText ? `${BACKEND_URL}${profile.photoText}` : photo}
               alt={profile.name}
               className="avatar"
             />
