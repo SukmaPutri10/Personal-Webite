@@ -1,4 +1,5 @@
-import { useEffect, useState } from 'react'
+import photo from "./assets/photo.png";
+import { useEffect, useMemo, useState } from 'react'
 
 const IS_PRODUCTION = import.meta.env.PROD
 
@@ -10,35 +11,27 @@ const BACKEND_URL = IS_PRODUCTION
   ? ''
   : 'http://localhost:5000'
 
-function normalizePhotoUrl(photo) {
-  if (!photo) return ''
-  if (photo.startsWith('http')) return photo
-  if (photo.startsWith('/')) return `${BACKEND_URL}${photo}`
-  return `${BACKEND_URL}/${photo}`
-}
+const PARTICLES = Array.from({ length: 34 }, (_, index) => index)
 
 function App() {
   const [cv, setCv] = useState(null)
   const [loading, setLoading] = useState(true)
   const [error, setError] = useState('')
+  const [mouse, setMouse] = useState({ x: 50, y: 50 })
 
   useEffect(() => {
     async function fetchCv() {
       try {
         const response = await fetch(API_URL)
-
-        if (!response.ok) {
-          throw new Error("Gagal mengambil data CV")
-        }
-
         const result = await response.json()
 
-        console.log(result);
+        if (!result.success) {
+          throw new Error(result.message)
+        }
 
-        setCv(result)
+        setCv(result.data)
       } catch (err) {
-        console.error(err);
-        setError(err.message);
+        setError('Gagal mengambil data CV. Pastikan backend berjalan di http://localhost:5000')
       } finally {
         setLoading(false)
       }
@@ -47,11 +40,31 @@ function App() {
     fetchCv()
   }, [])
 
+  useEffect(() => {
+    function handleMouseMove(event) {
+      const x = Math.round((event.clientX / window.innerWidth) * 100)
+      const y = Math.round((event.clientY / window.innerHeight) * 100)
+      setMouse({ x, y })
+    }
+
+    window.addEventListener('mousemove', handleMouseMove)
+    return () => window.removeEventListener('mousemove', handleMouseMove)
+  }, [])
+
+  const styleVars = useMemo(() => ({
+    '--mouse-x': `${mouse.x}%`,
+    '--mouse-y': `${mouse.y}%`,
+  }), [mouse])
+
   if (loading) {
     return (
       <div className="state-screen">
-        <div className="loader"></div>
-        <p>Memuat CV profesional...</p>
+        <div className="loader-shell">
+          <div className="loader"></div>
+          <div className="loader-orbit"></div>
+        </div>
+        <h1>Loading Digital CV</h1>
+        <p>Menyiapkan tampilan portfolio profesional...</p>
       </div>
     )
   }
@@ -65,17 +78,59 @@ function App() {
     )
   }
 
-  const { profile, socials, stats, skills, experiences, education, projects } = cv
+  const {
+    profile = {},
+    socials = [],
+    stats = [],
+    skills = [],
+    experiences = [],
+    education = [],
+    projects = [],
+  } = cv
 
   return (
-    <main className="page-shell">
+    <main className="page-shell" style={styleVars}>
+      <div className="interactive-light"></div>
+<div className="grid-layer"></div>
+<div className="noise-layer"></div>
+
+<div className="aurora-ribbon">
+  <span></span>
+  <span></span>
+  <span></span>
+</div>
+
+<div className="particle-field">
+  {PARTICLES.map((item) => (
+    <i
+      key={item}
+      style={{
+        '--left': `${(item * 37) % 100}%`,
+        '--delay': `${(item % 12) * -0.55}s`,
+        '--duration': `${7 + (item % 9)}s`,
+        '--size': `${2 + (item % 4)}px`,
+      }}
+    ></i>
+  ))}
+</div>
+
       <div className="orb orb-one"></div>
       <div className="orb orb-two"></div>
       <div className="orb orb-three"></div>
 
+      <div className="laser-lines">
+        <span></span>
+        <span></span>
+        <span></span>
+        <span></span>
+      </div>
+
       <section className="hero-section">
         <nav className="navbar">
-          <div className="brand">CV<span>Studio</span></div>
+          <div className="brand">
+            CV<span>Studio</span>
+          </div>
+
           <div className="nav-links">
             <a href="#skills">Skills</a>
             <a href="#experience">Experience</a>
@@ -86,14 +141,25 @@ function App() {
 
         <div className="hero-grid">
           <div className="hero-copy">
-            <div className="eyebrow">Professional Digital CV</div>
-            <h1>{profile.name}</h1>
+            <div className="eyebrow">
+              <span></span>
+              Professional Digital CV
+            </div>
+
+            <h1>
+              <span>{profile.name}</span>
+            </h1>
+
             <h2>{profile.role}</h2>
             <p className="tagline">{profile.tagline}</p>
 
             <div className="hero-actions">
-              <a href="#projects" className="primary-button">Lihat Project</a>
-              <a href={`mailto:${profile.email}`} className="secondary-button">Hubungi Saya</a>
+              <a href="#projects" className="primary-button">
+                Lihat Project
+              </a>
+              <a href={`mailto:${profile.email}`} className="secondary-button">
+                Hubungi Saya
+              </a>
             </div>
 
             <div className="quick-info">
@@ -104,34 +170,45 @@ function App() {
           </div>
 
           <div className="profile-card">
+  <div className="card-glow"></div>
+  <div className="scan-line"></div>
+
+  <div className="hologram-rings">
+    <span></span>
+    <span></span>
+    <span></span>
+  </div>
+
             <div className="avatar-ring">
-              <img
-                src={profile.photoText ? `${BACKEND_URL}${profile.photoText}` : photo}
-              alt={profile.name}
-              className="avatar"
-            />
-          </div>
-          <h3>{profile.name}</h3>
-          <p>{profile.role}</p>
+              <div className="avatar">
+                <img
+    src={photo}
+    alt={profile.name}
+  />
+</div>
+            </div>
+
+            <h3>{profile.name}</h3>
+            <p>{profile.role}</p>
+
+            <div className="profile-chip">
+              Available for collaboration
+            </div>
+
             <div className="social-list">
               {socials.map((social) => (
-              <a
-                key={social.label}
-                href={social.url}
-                target={social.url.startsWith("mailto:") ? "_self" : "_blank"}
-                rel="noopener noreferrer"
-              >
-                {social.label}
-              </a>
-            ))}
-          </div>
+                <a key={social.label} href={social.url} target="_blank" rel="noreferrer">
+                  {social.label}
+                </a>
+              ))}
+            </div>
           </div>
         </div>
       </section>
 
       <section className="stats-section">
-        {stats.map((item) => (
-          <div className="stat-card" key={item.label}>
+        {stats.map((item, index) => (
+          <div className="stat-card" key={item.label} style={{ '--delay': `${index * 0.12}s` }}>
             <strong>{item.value}</strong>
             <span>{item.label}</span>
           </div>
@@ -143,7 +220,8 @@ function App() {
           <span>About</span>
           <h2>Profil Singkat</h2>
         </div>
-        <div className="about-card">
+
+        <div className="about-card reveal-card">
           <p>{profile.summary}</p>
         </div>
       </section>
@@ -153,13 +231,15 @@ function App() {
           <span>Skills</span>
           <h2>Kemampuan Teknis</h2>
         </div>
+
         <div className="skills-grid">
-          {skills.map((skill) => (
-            <div className="skill-card" key={skill.name}>
+          {skills.map((skill, index) => (
+            <div className="skill-card reveal-card" key={skill.name} style={{ '--delay': `${index * 0.08}s` }}>
               <div className="skill-top">
                 <strong>{skill.name}</strong>
                 <span>{skill.level}%</span>
               </div>
+
               <div className="skill-bar">
                 <div style={{ width: `${skill.level}%` }}></div>
               </div>
@@ -174,9 +254,10 @@ function App() {
             <span>Experience</span>
             <h2>Pengalaman</h2>
           </div>
+
           <div className="timeline">
             {experiences.map((item) => (
-              <article className="timeline-item" key={`${item.position}-${item.company}`}>
+              <article className="timeline-item reveal-card" key={`${item.position}-${item.company}`}>
                 <span>{item.period}</span>
                 <h3>{item.position}</h3>
                 <h4>{item.company}</h4>
@@ -191,9 +272,10 @@ function App() {
             <span>Education</span>
             <h2>Pendidikan</h2>
           </div>
+
           <div className="timeline">
             {education.map((item) => (
-              <article className="timeline-item" key={`${item.degree}-${item.school}`}>
+              <article className="timeline-item reveal-card" key={`${item.degree}-${item.school}`}>
                 <span>{item.period}</span>
                 <h3>{item.degree}</h3>
                 <h4>{item.school}</h4>
@@ -209,12 +291,14 @@ function App() {
           <span>Portfolio</span>
           <h2>Project Pilihan</h2>
         </div>
+
         <div className="project-grid">
-          {projects.map((project) => (
-            <article className="project-card" key={project.title}>
+          {projects.map((project, index) => (
+            <article className="project-card reveal-card" key={project.title} style={{ '--delay': `${index * 0.12}s` }}>
               <div className="project-icon">{project.title.charAt(0)}</div>
               <h3>{project.title}</h3>
               <p>{project.description}</p>
+
               <div className="tech-list">
                 {project.tech.map((tech) => (
                   <span key={tech}>{tech}</span>
@@ -231,7 +315,15 @@ function App() {
           <h2>Siap Berkolaborasi?</h2>
           <p>Hubungi saya untuk diskusi project, internship, freelance, atau kolaborasi teknologi.</p>
         </div>
-        <a href={`mailto:${profile.email}`} className="primary-button">Kirim Email</a>
+
+        <a
+          href={`https://mail.google.com/mail/?view=cm&fs=1&to=${profile.email}&su=${encodeURIComponent('Kolaborasi Project')}`}
+          target="_blank"
+          rel="noreferrer"
+          className="primary-button"
+        >
+          Kirim Email
+        </a>
       </section>
     </main>
   )

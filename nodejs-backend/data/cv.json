@@ -7,7 +7,7 @@
     "email": "sukmaputri@students.amikom.ac.id",
     "phone": "+62 858-7880-4824",
     "website": "",
-    "photoText": "/assets/photo.png",
+    "photoText": "C:\\BCI Semester 4\\Pemrograman Web\\Pertemuan 12\\react-frontend\\src\\assets\\photo.png",
     "summary": "Saya adalah mahasiswa S1 Informatika Universitas AMIKOM Yogyakarta yang memiliki minat pada pengembangan aplikasi web, backend development, serta integrasi Artificial Intelligence. Saya terbiasa membangun project menggunakan React.js, Node.js, Express.js, MySQL, dan Git, serta terus mengembangkan kemampuan melalui berbagai project akademik maupun project pribadi."
   },
   "socials": [
@@ -17,7 +17,7 @@
     },
     {
       "label": "Instagram",
-      "url": "mailto:sukmaputri@students.amikom.ac.id"
+      "url": "https://www.instagram.com/sukmaaptri___?igsh=MWNvd29qMXplOG52OA=="
     }
   ],
   "stats": [

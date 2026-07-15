@@ -67,7 +67,7 @@ app.use((req, res) => {
     endpoints: {
       health: '/api/health',
       cv: '/api/cv',
-      photo: '/assets/photo.png',
+      photo: '/assets/photo.jpg',
     },
   })
 })
@@ -75,5 +75,5 @@ app.use((req, res) => {
 app.listen(PORT, '0.0.0.0', () => {
   console.log(`Server berjalan di http://localhost:${PORT}`)
   console.log(`API CV: http://localhost:${PORT}/api/cv`)
-  console.log(`Foto: http://localhost:${PORT}/assets/photo.png`)
+  console.log(`Foto: http://localhost:${PORT}/assets/photo.jpg`)
 })
